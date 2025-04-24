@@ -15,3 +15,4 @@ if let input = readLine(), let n = Int(input) {
     print("Некорректный ввод.")
 }
 
+

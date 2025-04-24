@@ -8,3 +8,4 @@ n = gets.to_i
   puts
 end
 
+

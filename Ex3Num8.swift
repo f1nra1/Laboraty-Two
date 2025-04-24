@@ -1,26 +1,36 @@
 import Foundation
 
-print("Введите количество чисел: ", terminator: "")
-guard let nInput = readLine(), let n = Int(nInput) else {
-    print("Некорректный ввод.")
-    exit(0)
+func readInt() -> Int {
+    var input: Int?
+    repeat {
+        if let line = readLine() {
+            input = Int(line)
+        }
+    } while input == nil
+    return input!
 }
 
-var sum = 0
+func main() {
+    var sum = 0
 
-for i in 1...n {
-    print("Введите число \(i): ", terminator: "")
-    guard let input = readLine() else {
-        print("Некорректный ввод.")
-        exit(0)
-    }
+    print("Введите количество чисел:")
+    let n = readInt()
 
-    for char in input {
-        if let digit = char.wholeNumberValue, digit % 3 == 0 {
-            sum += digit
+    for i in 1...n {
+        print("Введите число \(i):")
+        var number = abs(readInt())
+
+        // Разбираем число по цифрам
+        while number > 0 {
+            let digit = number % 10
+            if digit % 3 == 0 && digit != 0 {
+                sum += digit
+            }
+            number /= 10
         }
     }
+
+    print("Сумма цифр, делящихся на 3: \(sum)")
 }
 
-print("Сумма цифр, делящихся на 3: \(sum)")
-
+main()

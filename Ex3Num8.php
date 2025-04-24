@@ -1,26 +1,27 @@
 <?php
-echo "Введите количество чисел: ";
-$n = (int)fgets(STDIN);
 
 $sum = 0;
 
-for ($i = 0; $i < $n; $i++) {
-    echo "Введите число " . ($i + 1) . ": ";
-    $input = trim(fgets(STDIN)); // Вводим одно число как строку
+echo "Введите количество чисел: ";
+$n = (int)fgets(STDIN);
 
-    // Разбираем каждое число
-    for ($j = 0; $j < strlen($input); $j++) {
-        $c = $input[$j];
+for ($i = 1; $i <= $n; $i++) {
+    echo "Введите число $i: ";
+    $number = (int)fgets(STDIN);
 
-        if (is_numeric($c)) { // Проверяем, является ли символ цифрой
-            $digit = (int)$c; // Преобразуем символ в цифру
-            if ($digit % 3 == 0) {
-                $sum += $digit;
-            }
+    // Обрабатываем отрицательные числа
+    $number = abs($number);
+
+    // Разбираем число по цифрам
+    $temp = $number;
+    while ($temp > 0) {
+        $digit = $temp % 10;
+        if ($digit % 3 == 0 && $digit != 0) {
+            $sum += $digit;
         }
+        $temp = (int)($temp / 10);
     }
 }
 
-echo "Сумма цифр, делящихся на 3: " . $sum . "\n";
+echo "Сумма цифр, делящихся на 3: $sum\n";
 ?>
-

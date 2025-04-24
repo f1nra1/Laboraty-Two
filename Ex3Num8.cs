@@ -8,25 +8,30 @@ class Program
         Console.Write("Введите количество чисел: ");
         n = int.Parse(Console.ReadLine());
 
-        for (int i = 0; i < n; i++) // Считываем каждое число
+        for (int i = 0; i < n; i++)
         {
-            Console.Write("Введите число " + (i + 1) + ": ");
-            string input = Console.ReadLine(); // Вводим одно число как строку
+            int number;
+            Console.Write($"Введите число {i + 1}: ");
+            number = int.Parse(Console.ReadLine());
 
-            foreach (char c in input) // Разбираем каждое число
+            // Обрабатываем отрицательные числа
+            if (number < 0)
             {
-                if (Char.IsDigit(c)) // Проверяем, является ли символ цифрой
+                number = -number;
+            }
+
+            // Разбираем число по цифрам
+            while (number > 0)
+            {
+                int digit = number % 10;
+                if (digit % 3 == 0 && digit != 0)
                 {
-                    int digit = c - '0'; // Преобразуем символ в цифру
-                    if (digit % 3 == 0)
-                    {
-                        sum += digit;
-                    }
+                    sum += digit;
                 }
+                number /= 10;
             }
         }
 
-        Console.WriteLine("Сумма цифр, делящихся на 3: " + sum);
+        Console.WriteLine($"Сумма цифр, делящихся на 3: {sum}");
     }
 }
-

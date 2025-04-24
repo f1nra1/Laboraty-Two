@@ -9,7 +9,7 @@ _main:
     // Выводим приглашение "Введите n: "
     adrp x1, prompt@PAGE
     add x1, x1, prompt@PAGEOFF
-    mov x2, #18             // Длина приглашения (11 байт, включая нулевой терминатор)
+    mov x2, #18             // Длина приглашения
     mov x0, #1              // stdout
     mov x16, #4             // sys_write
     svc #0
@@ -53,7 +53,7 @@ outer_loop:
     mov x21, #0             // Счетчик столбцов (j)
 
 inner_loop:
-    cmp x21, x20            // if (j >= i) → next_line
+    cmp x21, x20            // if (j >= i)
     b.ge next_line
 
     // Вычисляем символ: 'A' + (N - 1 - j)

@@ -1,19 +1,19 @@
-puts "Введите количество чисел: "
-n = gets.to_i
-
 sum = 0
 
-n.times do |i|
-  print "Введите число #{i + 1}: "
-  input = gets.chomp
+print "Введите количество чисел: "
+n = gets.chomp.to_i
 
-  input.each_char do |c|
-    if c =~ /\d/  # Проверяем, цифра ли это
-      digit = c.to_i
-      sum += digit if digit % 3 == 0
-    end
+(1..n).each do |i|
+  print "Введите число #{i}: "
+  number = gets.chomp.to_i.abs  # Модуль числа для обработки отрицательных
+
+  # Разбираем число по цифрам
+  temp = number
+  while temp > 0
+    digit = temp % 10
+    sum += digit if digit % 3 == 0 && digit != 0
+    temp /= 10
   end
 end
 
 puts "Сумма цифр, делящихся на 3: #{sum}"
-

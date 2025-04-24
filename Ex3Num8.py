@@ -1,14 +1,17 @@
 n = int(input("Введите количество чисел: "))
-total = 0
+sum = 0
+for i in range(1, n + 1):
+    number = int(input(f"Введите число {i}: "))
 
-for i in range(n):
-    input_str = input(f"Введите число {i + 1}: ")
-    
-    for c in input_str:
-        if c.isdigit():
-            digit = int(c)
-            if digit % 3 == 0:
-                total += digit
+    # Обрабатываем отрицательные числа
+    number = abs(number)
 
-print("Сумма цифр, делящихся на 3:", total)
+    # Разбираем число по цифрам
+    temp = number
+    while temp > 0:
+        digit = temp % 10
+        if digit % 3 == 0 and digit != 0:
+            sum_ += digit
+        temp = temp // 10
 
+print(f"Сумма цифр, делящихся на 3: {sum_}")

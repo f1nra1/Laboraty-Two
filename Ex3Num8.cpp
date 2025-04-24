@@ -1,35 +1,36 @@
 #include <iostream>
-#include <string>
-#include <sstream>
-
 using namespace std;
 
 int main()
 {
-    int n, sum = 0;
+    int n;
     cout << "Введите количество чисел: ";
     cin >> n;
-    cin.ignore();
 
-    for (int i = 0; i < n; i++) // Считываем каждое число
+    int sum = 0;
+    for (int i = 0; i < n; i++)
     {
-        string input;
+        int number;
         cout << "Введите число " << i + 1 << ": ";
-        getline(cin, input); // Вводим одно число как строку
+        cin >> number;
 
-        for (char c : input)  // Разбираем каждое число
+
+        if (number < 0)
         {
-            if (isdigit(c)) // Проверяем, является ли символ цифрой
+            number = -number;
+        }
+        // Разбираем число по цифрам
+        while (number > 0)
+        {
+            int digit = number % 10;
+            if (digit % 3 == 0 && digit != 0)
             {
-                int digit = c - '0'; // Преобразуем символ в цифру
-                if (digit % 3 == 0)
-                {
-                    sum += digit;
-                }
+                sum += digit;
             }
+            number /= 10;
         }
     }
+
     cout << "Сумма цифр, делящихся на 3: " << sum << endl;
     return 0;
 }
-

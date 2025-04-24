@@ -7,6 +7,7 @@ class Program
     {
         // Ввод количества цветов
         Console.Write("Введите количество цветов: ");
+
         int n = int.Parse(Console.ReadLine());
 
         // Ввод потребности каждого цветка
